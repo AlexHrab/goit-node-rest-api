@@ -9,7 +9,7 @@ export const getContact = (id) => Contact.findById(id);
 
 export const addContact = (data) => Contact.create(data);
 
-export const deleteContact = (id) => Contact.deleteOne(id);
+export const deleteContact = (id) => Contact.findByIdAndDelete(id);
 
 export const updateContactById = (id, data) =>
   Contact.findByIdAndUpdate(id, data, { new: true });
