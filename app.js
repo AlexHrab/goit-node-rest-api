@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
+import { contacts_host } from "./config.js";
 
 import contactsRouter from "./routes/contactsRouter.js";
 
@@ -21,9 +22,6 @@ app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });
 });
-
-const contacts_host =
-  "mongodb+srv://AlexHrab:Qaz123wsx@cluster0.4rwsrnq.mongodb.net/db-contacts?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(contacts_host)
