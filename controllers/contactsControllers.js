@@ -70,3 +70,20 @@ export const updateContact = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateStatus = async (req, res, next) => {
+  try {
+    const { error } = updateContactSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message);
+    }
+    const { id } = req.params;
+    const result = await contactsService.updateContactById(id, req.body);
+    if (!result) {
+      throw HttpError(404);
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
